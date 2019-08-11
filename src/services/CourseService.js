@@ -1,15 +1,17 @@
 import Axios from 'axios';
 const baseURL = process.env.REACT_APP_BASE_URL;
- class CourseService{
+console.log(baseURL)
+class CourseService{
+   
   fetchCourse() {
     return Axios({
       url: `${baseURL}/QuanLyKhoaHoc/LayDanhSachKhoaHoc`,
       method: "GET"
     });
   }
-   fetchDetailCourse() {
+   fetchDetailCourse(courseId) {
      return Axios({
-       url: `${baseURL}/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=LTC_GP01`,
+       url: `${baseURL}/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${courseId}`,
        method: "GET"
      });
    }

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import CourseItem from '../components/CourseItem';
-import Axios from 'axios';
 import { connect } from 'react-redux';
-import CourseService from '../services/CourseService';
-
+import { fetchCourseFromDB} from '../Store/actions/Courses';
 
 class HomeScreen extends Component {
   render() {
@@ -21,18 +19,7 @@ class HomeScreen extends Component {
     );
   }
   componentDidMount() {
-    CourseService.fetchCourse()
-    .then(res => {
-      let fetchData = res.data;
-      // console.log(res.data);
-      this.props.setModel(fetchData);
-      // this.props.dispatch({
-      //   type: 'FETCH_COURSES',
-      //   payload: fetchData
-      // })
-    }).catch(err => {
-      console.log(err);
-    })
+    this.props.dispatch(fetchCourseFromDB())
   }
   _renderCourseItem = (data) => {
     console.log(data)
@@ -45,16 +32,7 @@ class HomeScreen extends Component {
     });
   }
 }
-const mapDisPatchToProps = dispatch => {
-  return {
-    setModel: (data) => {
-      dispatch({
-        type: 'FETCH_COURSES',
-        payload: data
-      })
-    }
-  }
-}
+
 const mapStateToProps = state => {
   return {
     coursesw: state.coursesData.courseCollections
@@ -62,4 +40,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, mapDisPatchToProps)(HomeScreen);
+export default connect(mapStateToProps)(HomeScreen);
