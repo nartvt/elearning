@@ -1,17 +1,15 @@
-import Axios from 'axios';
-const baseURL = process.env.REACT_APP_BASE_URL;
-console.log(baseURL)
+import { restConnector } from '../Connectors/Axios';
 class CourseService{
    
   fetchCourse() {
-    return Axios({
-      url: `${baseURL}/QuanLyKhoaHoc/LayDanhSachKhoaHoc`,
+    return restConnector({
+      url: `/QuanLyKhoaHoc/LayDanhSachKhoaHoc`,
       method: "GET"
     });
   }
    fetchDetailCourse(courseId) {
-     return Axios({
-       url: `${baseURL}/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${courseId}`,
+     return restConnector({
+       url: `/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${courseId}`,
        method: "GET"
      });
    }

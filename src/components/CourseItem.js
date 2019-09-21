@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CourseItemDetails from './CourseItemDetails';
+// import CourseItemDetails from './CourseItemDetails';
 import { Link } from 'react-router-dom';
 class CourseItem extends Component {
   render() {
